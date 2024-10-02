@@ -40,10 +40,10 @@ button {
 }
 
 .correct {
-  @apply bg-blue-500 text-white;
+  @apply bg-blue-500 text-white hover:bg-blue-500;
 }
 
 .incorrect {
-  @apply bg-red-500 opacity-70;
+  @apply bg-red-500 opacity-70 hover:bg-red-500;
 }
 </style>

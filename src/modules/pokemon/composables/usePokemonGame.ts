@@ -7,10 +7,12 @@ export const usePokemonGame = () => {
   const pokemons = ref<Pokemon[]>([]);
   const pokemonsOptions = ref<Pokemon[]>([]);
   const gameStatus = ref<GameStatus>(GameStatus.Playing);
+
   const isLoading = computed(() => pokemons.value.length === 0);
-  const randomPokemon = computed(
-    () => pokemonsOptions.value[Math.floor(Math.random() * pokemonsOptions.value.length)],
-  );
+  const randomPokemon = computed(() => {
+    const randomIndex = Math.floor(Math.random() * pokemonsOptions.value.length);
+    return pokemonsOptions.value[randomIndex];
+  });
 
   const getPokemons = async (): Promise<Pokemon[]> => {
     const response = await pokemonApi.get<PokemonList>('/?limit=151');
@@ -37,7 +39,7 @@ export const usePokemonGame = () => {
     const hasWon = randomPokemon.value.id === id;
 
     if (hasWon) {
-      gameStatus.value === GameStatus.Won;
+      gameStatus.value = GameStatus.Won;
       confetti({
         particleCount: 300,
         spread: 150,
@@ -46,7 +48,7 @@ export const usePokemonGame = () => {
       return;
     }
 
-    gameStatus.value === GameStatus.Lost;
+    gameStatus.value = GameStatus.Lost;
   };
 
   onMounted(async () => {

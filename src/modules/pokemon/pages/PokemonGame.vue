@@ -38,8 +38,8 @@
 import PokemonPicture from '../components/PokemonPicture.vue';
 import PokemonOptions from '../components/PokemonOptions.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
-import { GameStatus } from '../interfaces/game-status.enum';
+import { GameStatus } from '../interfaces';
 
-const { gameStatus, isLoading, randomPokemon, pokemonsOptions, checkAnswer, getNextRound } =
+const { randomPokemon, isLoading, gameStatus, pokemonsOptions, checkAnswer, getNextRound } =
   usePokemonGame();
 </script>
